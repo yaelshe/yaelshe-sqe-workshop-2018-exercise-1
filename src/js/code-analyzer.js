@@ -6,7 +6,7 @@ let functionCodeOnly;
 const parseCode = (codeToParse) => {
     tableInfo.clear;
     functionCodeOnly=saveGlobalsVars(codeToParse);
-    return esprima.parseScript(functionCodeOnly,{loc:true});
+    return esprima.parseScript(codeToParse,{loc:true});
 
 };
 
@@ -29,9 +29,8 @@ const statmentType = {
     'ArrayExpression': parseArray};
 
 
-function saveGlobalsVars(codeToParse) {
+function saveGlobalsVars(codeToParse) { //new
     let lines=codeToParse.split('\n');
-    lines=clean(lines);
     globalsVars=[];
     let i=0;
     let index=0;
@@ -54,18 +53,10 @@ function getFunctionOnly(lines, i, j){
     }
     return ans;
 }
-function clean(lines)
-{
-    for(let x=0;x<lines.length;x++){
-        if(lines[x].trim()===''||lines[x].trim()=='\n')
-            lines.splice(x,1);
-    }
-    return lines;
-}
+
 function makeArray (ParsedCode) {
     tableInfo.clear;
     tableInfo=[];
-    //ParsedCode.replaceAll('(?m)^\\s', '');
     if (ParsedCode!=null&&ParsedCode.body.length > 0) {
         if(isFunc(ParsedCode)) {
             functionHeader(ParsedCode);
