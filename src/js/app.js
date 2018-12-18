@@ -12,47 +12,46 @@ $(document).ready(function () {
         //let lines= makeArray(parsedCode);
         let args=$('#argsPlaceholder').val();
         makeArray(parsedCode);
-        //let lines= makeArray(parsedCode);
-        //insertToTable(lines);
+        let lines= makeArray(parsedCode);
         functionAfterSubs(codeToParse,args);
-        displayFuncWithColor();
-
+        showFuncAfterSubs();
+        insertToTable(lines);
     });
 
 });
 
-// function insertToTable(lines) {
-//    // deleteRows();
-//     var bodyTable = document.getElementById('bodyTable');
-//     bodyTable.innerHTML = '';
-//     for(let i=0;i<lines.length;i++)
-//     {
-//         var row=document.createElement('tr');
-//         row=createRow(i,lines,row);
-//         bodyTable.appendChild(row);
-//     }
-// }
+function insertToTable(lines) {
+   // deleteRows();
+    var bodyTable = document.getElementById('bodyTable');
+    bodyTable.innerHTML = '';
+    for(let i=0;i<lines.length;i++)
+    {
+        var row=document.createElement('tr');
+        row=createRow(i,lines,row);
+        bodyTable.appendChild(row);
+    }
+}
 
-// function createRow(i,lines,row){
-//     let h= document.createElement('td');
-//     h.textContent=lines[i].Line;
-//     row.append(h);
-//     h= document.createElement('td');
-//     h.textContent=lines[i].Type;
-//     row.append(h);
-//     h= document.createElement('td');
-//     h.textContent=lines[i].Name;
-//     row.append(h);
-//     h= document.createElement('td');
-//     h.textContent=lines[i].Condition;
-//     row.append(h);
-//     h= document.createElement('td');
-//     h.textContent=lines[i].Value;
-//     row.append(h);
-//     return row;
-// }
+function createRow(i,lines,row){
+    let h= document.createElement('td');
+    h.textContent=lines[i].Line;
+    row.append(h);
+    h= document.createElement('td');
+    h.textContent=lines[i].Type;
+    row.append(h);
+    h= document.createElement('td');
+    h.textContent=lines[i].Name;
+    row.append(h);
+    h= document.createElement('td');
+    h.textContent=lines[i].Condition;
+    row.append(h);
+    h= document.createElement('td');
+    h.textContent=lines[i].Value;
+    row.append(h);
+    return row;
+}
 
-function displayFuncWithColor() {
+function showFuncAfterSubs() {
 
     let htmlObject = document.getElementById('subsFunc');
     let func='';
